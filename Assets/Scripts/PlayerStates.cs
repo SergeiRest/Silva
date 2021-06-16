@@ -9,12 +9,7 @@ public class PlayerStates : MonoBehaviour
 	private IPlayerBehaviour _currentBehavior;
 	private int _currentState = 1;
 
-	private void InitBehaviors()
-	{
-		_behaviorMap = new Dictionary<int, IPlayerBehaviour>();
-		_behaviorMap[1] = new BasicRat();
-		_behaviorMap[2] = new MediumRat();
-	}
+	
 
 	private void SetBehaviour(IPlayerBehaviour newBehaviour, Rigidbody2D rigidbody2D, SpriteRenderer spriteRenderer)
 	{
@@ -34,9 +29,11 @@ public class PlayerStates : MonoBehaviour
 		SetBasicBehaviour();
 	}
 
-	private void Start()
+	public void InitBehaviors()
 	{
-		InitBehaviors();
+		_behaviorMap = new Dictionary<int, IPlayerBehaviour>();
+		_behaviorMap[1] = new BasicRat();
+		_behaviorMap[2] = new MediumRat();
 		SetBehaviourByDefault();
 		_currentBehavior.Update();
 	}
@@ -46,18 +43,27 @@ public class PlayerStates : MonoBehaviour
 		_currentBehavior = _behaviorMap[1];
 	}
 
-	public void ChangeBehaviour(Rigidbody2D playerRigidbody, SpriteRenderer playerSprite)
+	public void FattenTheRat(Rigidbody2D playerRigidbody, SpriteRenderer playerSprite)
 	{
-		_currentState++;
-		try
+		if (_currentState < _behaviorMap.Count)
 		{
+			_currentState++;
 			var behaviour = GetBehaviour(_currentState);
 			SetBehaviour(behaviour, playerRigidbody, playerSprite);
 		}
-		catch
+		else
+			Debug.Log("Крыса и так жирная");
+	}
+
+	public void ShrinkTheRat(Rigidbody2D playerRigidbody, SpriteRenderer playerSprite)
+	{
+		if (_currentState <= _behaviorMap.Count && _currentState != 1)
 		{
-			
+			_currentState--;
+			var behaviour = GetBehaviour(_currentState);
+			SetBehaviour(behaviour, playerRigidbody, playerSprite);
 		}
-		
+		else
+			Debug.Log("Крыса и так дрищь");
 	}
 }

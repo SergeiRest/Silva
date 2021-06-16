@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LoadedItems 
+public class LoadedItems : MonoBehaviour
 {
-	[SerializeField] Sprite MediumRat;
+	[SerializeField] Sprite[] MediumRat;
 }

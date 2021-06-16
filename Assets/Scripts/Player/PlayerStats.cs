@@ -8,8 +8,13 @@ public class PlayerStats : MonoBehaviour
 	private Rigidbody2D _playerRigidbody;
 	private SpriteRenderer _playerSprite;
 	private int _points = 10;
+	private PlayerStates _playerStates = new PlayerStates();
+	public PlayerStates PlayerStates
+	{
+		get { return _playerStates; }
+	}
 	public event Action OnPointsValueChanged;
-	[SerializeField] private PlayerStates _playerStates;
+
 	public int Points
 	{
 		get { return _points; }
@@ -20,6 +25,7 @@ public class PlayerStats : MonoBehaviour
 	{
 		_playerRigidbody = GetComponent<Rigidbody2D>();
 		_playerSprite = GetComponent<SpriteRenderer>();
+		_playerStates.InitBehaviors();
 
 	}
 	private void OnTriggerEnter2D(Collider2D collision)
@@ -31,7 +37,7 @@ public class PlayerStats : MonoBehaviour
 			eat.GetEat(typeName, this);
 			Destroy(collision.gameObject);
 			AddPoint();
-			_playerStates.ChangeBehaviour(_playerRigidbody, _playerSprite);
+			_playerStates.FattenTheRat(_playerRigidbody, _playerSprite);
 		}
 		catch
 		{
@@ -47,5 +53,10 @@ public class PlayerStats : MonoBehaviour
 	private void AddPoint()
 	{
 		this.OnPointsValueChanged?.Invoke();
+	}
+
+	public void LoseWeight()
+	{
+		_playerStates.ShrinkTheRat(_playerRigidbody, _playerSprite);
 	}
 }

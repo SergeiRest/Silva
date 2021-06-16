@@ -10,7 +10,7 @@ class MediumRat : IPlayerBehaviour
 	public void Enter(Rigidbody2D rigidbody2D, SpriteRenderer playerSprite)
 	{
 		rigidbody2D.mass = _mass;
-		playerSprite.sprite = _playerTexture;
+		//playerSprite.sprite = _playerTexture;
 	}
 
 	public void Update()
