@@ -19,7 +19,6 @@ public class PlayerStates : MonoBehaviour
 
 	private IPlayerBehaviour GetBehaviour(int index)
 	{
-		_currentState = index;
 		var type = _behaviorMap[index];
 		return type;
 	}

@@ -9,9 +9,10 @@ using UnityEngine;
 class BasicRat : IPlayerBehaviour
 {
 	private float _mass = 1f;
-	private Sprite _playerSprite;
+	private Sprite _playerSprite = LoadedItems.GetSprite(1);
 	public void Enter(Rigidbody2D rigidbody2D, SpriteRenderer playerSprite)
 	{
+		playerSprite.sprite = _playerSprite;
 		rigidbody2D.mass = _mass;
 	}
 

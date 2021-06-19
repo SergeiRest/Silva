@@ -130,6 +130,7 @@ MonoBehaviour:
   _start: {fileID: 4711650887079583125}
   _finish: {fileID: 4711650886255878405}
   _pointToMove: {x: 0, y: 0, z: 0}
+  _stats: {fileID: 0}
 --- !u!61 &4711650886688694873
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -6,11 +6,11 @@ using UnityEngine;
 class MediumRat : IPlayerBehaviour
 {
 	private float _mass = 0.5f;
-	private Sprite _playerTexture;
+	private Sprite _playerTexture = LoadedItems.GetSprite(2);
 	public void Enter(Rigidbody2D rigidbody2D, SpriteRenderer playerSprite)
 	{
 		rigidbody2D.mass = _mass;
-		//playerSprite.sprite = _playerTexture;
+		playerSprite.sprite = _playerTexture;
 	}
 
 	public void Update()

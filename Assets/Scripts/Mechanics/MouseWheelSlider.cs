@@ -6,7 +6,6 @@ public class MouseWheelSlider : MonoBehaviour
 	[SerializeField] private float _speed;
 	[SerializeField] private Transform _start, _finish;
 	[SerializeField] private Vector3 _pointToMove;
-	[SerializeField] private PlayerStats _stats;
 	private Vector3 _startPosition;
     void Start()
     {
@@ -41,7 +40,9 @@ public class MouseWheelSlider : MonoBehaviour
 
 			if(progress.RunScore >= 100)
 			{
-				_stats.LoseWeight();
+				progress.RunScore = 0;
+				PlayerStats stats =  (PlayerStats)FindObjectOfType(typeof(PlayerStats));
+				stats.LoseWeight();
 			}
 		}
 	}
